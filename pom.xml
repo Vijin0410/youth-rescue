@@ -8,6 +8,21 @@
   <artifactId>youth-rescue</artifactId>
   <version>1.0.0</version>
   <packaging>pom</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>com.rescue</groupId>
+      <artifactId>rescue-common</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.rescue</groupId>
+      <artifactId>rescue-framework</artifactId>
+    </dependency>
+  </dependencies>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -19,6 +34,7 @@
     <java.version>17</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+    <spring-boot.version>3.2.7</spring-boot.version>
     <!-- Spring Cloud 版本 (与Spring Boot 3.2.x兼容) -->
     <spring-cloud.version>2023.0.1</spring-cloud.version>
     <!-- Spring Cloud Alibaba 版本 -->
@@ -34,9 +50,11 @@
     <!-- 数据库相关 -->
     <mybatis-plus.version>3.5.4</mybatis-plus.version>
     <druid.version>1.2.20</druid.version>
-    <mysql.version>8.0.28</mysql.version>
+    <pgsql.version>42.5.1</pgsql.version>
     <redisson.version>3.24.3</redisson.version>
 
+    <!-- Redis -->
+    <redis.version>3.2.7</redis.version>
     <!-- 阿里云相关 -->
     <aliyun.java.sdk.core.version>4.5.25</aliyun.java.sdk.core.version>
     <aliyun.java.sdk.dysmsapi.version>2.1.0</aliyun.java.sdk.dysmsapi.version>
@@ -55,32 +73,38 @@
 
   <modules>
     <module>rescue-common</module>
-<!--    <module>rescue-api</module>-->
-    <module>rescue-admin</module>
-<!--    <module>rescue-im</module>-->
-<!--    <module>rescue-task</module>-->
-<!--    <module>rescue-mq-consumer</module>-->
+    <module>rescue-framework</module>
+    <module>rescue-system</module>
+<!--    <module>rescue-business</module>-->
+<!--    <module>rescue-start</module>-->
   </modules>
 
   <dependencyManagement>
     <dependencies>
-      <!-- Spring Cloud -->
       <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-dependencies</artifactId>
-        <version>${spring-cloud.version}</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+<!--      &lt;!&ndash; Spring Cloud &ndash;&gt;-->
+<!--      <dependency>-->
+<!--        <groupId>org.springframework.cloud</groupId>-->
+<!--        <artifactId>spring-cloud-dependencies</artifactId>-->
+<!--        <version>${spring-cloud.version}</version>-->
+<!--        <type>pom</type>-->
+<!--        <scope>import</scope>-->
+<!--      </dependency>-->
 
-      <!-- Spring Cloud Alibaba -->
-      <dependency>
-        <groupId>com.alibaba.cloud</groupId>
-        <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-        <version>${spring-cloud-alibaba.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
+<!--      &lt;!&ndash; Spring Cloud Alibaba &ndash;&gt;-->
+<!--      <dependency>-->
+<!--        <groupId>com.alibaba.cloud</groupId>-->
+<!--        <artifactId>spring-cloud-alibaba-dependencies</artifactId>-->
+<!--        <version>${spring-cloud-alibaba.version}</version>-->
+<!--        <type>pom</type>-->
+<!--        <scope>import</scope>-->
+<!--      </dependency>-->
 
       <!-- MyBatis Plus -->
       <dependency>
@@ -135,13 +159,6 @@
         <version>${nimbus-jose-jwt.version}</version>
       </dependency>
 
-      <!-- EasyExcel -->
-      <dependency>
-        <groupId>com.alibaba</groupId>
-        <artifactId>easyexcel</artifactId>
-        <version>${easyexcel.version}</version>
-      </dependency>
-
       <!-- MinIO -->
       <dependency>
         <groupId>io.minio</groupId>
@@ -188,6 +205,82 @@
         <artifactId>rescue-common</artifactId>
         <version>${project.version}</version>
       </dependency>
+      <!-- 框架 -->
+      <dependency>
+        <groupId>com.rescue</groupId>
+        <artifactId>rescue-framework</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <!-- 系统模块 -->
+      <dependency>
+        <groupId>com.rescue</groupId>
+        <artifactId>rescue-system</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <!-- MyBatis Plus -->
+      <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-boot-starter</artifactId>
+        <version>${mybatis-plus.version}</version>
+      </dependency>
+
+      <!-- Redis -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-redis</artifactId>
+        <version>${redis.version}</version>
+      </dependency>
+
+      <!-- Redisson -->
+      <dependency>
+        <groupId>org.redisson</groupId>
+        <artifactId>redisson-spring-boot-starter</artifactId>
+        <version>${redisson.version}</version>
+      </dependency>
+
+      <!-- EasyExcel 导入导出 -->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>easyexcel</artifactId>
+        <version>${easyexcel.version}</version>
+      </dependency>
+
+      <!-- Knife4j API文档 -->
+      <dependency>
+        <groupId>com.github.xiaoymin</groupId>
+        <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+        <version>${knife4j.version}</version>
+      </dependency>
+
+      <!-- Lombok -->
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
+
+  <!-- 5. 公共构建插件配置 (可选) -->
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>${spring-boot.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>6</source>
+          <target>6</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
