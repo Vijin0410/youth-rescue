@@ -1,35 +1,33 @@
 package com.rescue.system.model.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.rescue.common.base.BaseEntity;
+import java.time.LocalDateTime;
+
+import cn.zhyinfo.common.base.BaseEntity;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 /**
- * 角色实体
+ * 角色表（权限控制）(Role)实体类
+ *
+ * @author makejava
+ * @since 2026-03-05 16:18:11
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
-@TableName("role")
 public class Role extends BaseEntity<Long> {
 
     /**
-     * 角色名称
+     * 角色标识
      */
-    private String roleName;
+    private String name;
 
     /**
-     * 角色编码
-     */
-    private String roleCode;
-
-    /**
-     * 描述
+     * 角色描述
      */
     private String description;
 
     /**
-     * 状态（0：正常，1：禁用）
+     * 权限列表
      */
-    private Integer status;
+    private String permissions;
+
 }
+

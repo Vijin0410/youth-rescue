@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rescue.system.mapper.UserProfileMapper">
+
+
+    <sql id="table_field">
+        iduser_idgenderbirthdayheighteducationjobannual_incomecitydistrictwechat_qrself_introauth_statusmarriage_statushas_childrenwant_childrenzodiachobbycreate_timecreate_byupdate_timeupdate_by
+    </sql>
+</mapper>
+

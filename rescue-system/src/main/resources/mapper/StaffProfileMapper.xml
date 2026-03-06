@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rescue.system.mapper.StaffProfileMapper">
+
+
+    <sql id="table_field">
+        iduser_idreal_nameid_cardemployee_nodepartmentjoin_dateservice_areaintroductioncontact_phonecreate_timecreate_byupdate_timeupdate_by
+    </sql>
+</mapper>
+

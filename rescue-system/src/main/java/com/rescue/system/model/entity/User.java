@@ -1,27 +1,18 @@
 package com.rescue.system.model.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.rescue.common.base.BaseEntity;
+import java.time.LocalDateTime;
+
+import cn.zhyinfo.common.base.BaseEntity;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 /**
- * 用户实体
+ * 用户主表（所有角色共有信息）(User)实体类
+ *
+ * @author makejava
+ * @since 2026-03-05 16:18:14
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
-@TableName("user")
 public class User extends BaseEntity<Long> {
-
-    /**
-     * 用户名
-     */
-    private String username;
-
-    /**
-     * 密码
-     */
-    private String password;
 
     /**
      * 手机号
@@ -29,17 +20,44 @@ public class User extends BaseEntity<Long> {
     private String phone;
 
     /**
-     * 真实姓名
+     * 微信openid
      */
-    private String realName;
+    private String openid;
 
     /**
-     * 状态（0：正常，1：禁用）
+     * 微信unionid
+     */
+    private String unionid;
+
+    /**
+     * 微信会话密钥
+     */
+    private String sessionKey;
+
+    /**
+     * 昵称
+     */
+    private String nickname;
+
+    /**
+     * 头像路径
+     */
+    private String avatar;
+
+    /**
+     * 角色ID
+     */
+    private Integer roleId;
+
+    /**
+     * 状态：1正常 2禁用 3审核
      */
     private Integer status;
 
     /**
-     * 头像
+     * 最后活跃时间
      */
-    private String avatar;
+    private LocalDateTime lastActiveTime;
+
 }
+

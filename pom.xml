@@ -13,15 +13,6 @@
       <groupId>com.rescue</groupId>
       <artifactId>rescue-common</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.rescue</groupId>
-      <artifactId>rescue-framework</artifactId>
-    </dependency>
   </dependencies>
 
   <parent>
@@ -46,6 +37,8 @@
     <mapstruct.version>1.5.5.Final</mapstruct.version>
     <okhttp3.version>4.8.1</okhttp3.version>
     <easyexcel.version>3.3.2</easyexcel.version>
+    <lombok.version>1.18.20</lombok.version>
+    <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
 
     <!-- 数据库相关 -->
     <mybatis-plus.version>3.5.4</mybatis-plus.version>
@@ -128,7 +121,7 @@
       <!-- Redisson -->
       <dependency>
         <groupId>org.redisson</groupId>
-        <artifactId>redisson-spring-boot-starter</artifactId>
+        <artifactId>redisson</artifactId>
         <version>${redisson.version}</version>
       </dependency>
 
@@ -149,6 +142,22 @@
         <groupId>org.mapstruct</groupId>
         <artifactId>mapstruct-processor</artifactId>
         <version>${mapstruct.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <!-- Lombok -->
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <!-- Lombok-MapStruct 绑定 -->
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok-mapstruct-binding</artifactId>
+        <version>${lombok-mapstruct-binding.version}</version>
         <scope>provided</scope>
       </dependency>
 
@@ -217,13 +226,6 @@
         <artifactId>rescue-system</artifactId>
         <version>${project.version}</version>
       </dependency>
-      <!-- MyBatis Plus -->
-      <dependency>
-        <groupId>com.baomidou</groupId>
-        <artifactId>mybatis-plus-boot-starter</artifactId>
-        <version>${mybatis-plus.version}</version>
-      </dependency>
-
       <!-- Redis -->
       <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -250,13 +252,6 @@
         <groupId>com.github.xiaoymin</groupId>
         <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
         <version>${knife4j.version}</version>
-      </dependency>
-
-      <!-- Lombok -->
-      <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <version>${lombok.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
