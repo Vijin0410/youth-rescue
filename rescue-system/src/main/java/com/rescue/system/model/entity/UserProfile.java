@@ -2,7 +2,7 @@ package com.rescue.system.model.entity;
 
 import java.time.LocalDateTime;
 
-import cn.zhyinfo.common.base.BaseEntity;
+import com.rescue.common.base.BaseEntity;
 import lombok.Data;
 
 /**

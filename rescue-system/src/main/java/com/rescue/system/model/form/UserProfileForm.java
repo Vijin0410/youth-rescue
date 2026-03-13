@@ -3,7 +3,7 @@ package com.rescue.system.model.form;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * 普通用户扩展表（相亲资料）表单信息

@@ -1,5 +1,6 @@
 package com.rescue.system.model.query;
 
+import com.rescue.common.base.BasePageQuery;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
